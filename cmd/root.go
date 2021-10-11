@@ -18,7 +18,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"runtime"
 
 	"github.com/spf13/cobra"
 
@@ -40,7 +39,7 @@ to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Hello from %s on %s", runtime.GOOS, runtime.GOARCH)
+		fmt.Printf("Hello from dpctl")
 	},
 }
 
