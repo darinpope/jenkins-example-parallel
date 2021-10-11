@@ -1,0 +1,54 @@
+pipeline {
+  agent none
+  stages {
+    stage('build and run') {
+      parallel {
+        stage('linux-armv6') {
+          agent {label 'linux-armv6'}
+          stages {
+            stage('build') {
+              steps {
+                sh 'go install dpctl'
+              }
+            }
+            stage('run') {
+              steps {
+                sh 'dpctl'
+              }
+            }
+          }
+        }
+        stage('linux-amd64') {
+          agent {label 'linux-amd64'}
+          stages {
+            stage('build') {
+              steps {
+                sh 'go install dpctl'
+              }
+            }
+            stage('run') {
+              steps {
+                sh 'dpctl'
+              }
+            }
+          }
+        }      
+        stage('darwin-amd64') {
+          agent {label 'darwin-amd64'}
+          stages {
+            stage('build') {
+              steps {
+                sh 'go install dpctl'
+              }
+            }
+            stage('run') {
+              steps {
+                sh 'dpctl'
+              }
+            }
+          }
+        }      
+      }
+    }
+  }
+}
